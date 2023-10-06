@@ -4,10 +4,12 @@ import Home from './pages/Home'
 
 function App() {
   return (
-    <div className="py-6 px-8 bg-gradient-to-t from-[#fff1eb] via-[#f2e7e7] to-[#ace0f9] font-Kanit">
+    <>
       <Navbar />
-      <Home />
-    </div>
+      <div className=" px-16 bg-black text-white font-Kanit">
+        <Home />
+      </div>
+    </>
   )
 }
 

@@ -5,6 +5,7 @@ import axios from 'axios'
 const usePosts = () => {
   const [posts, setPosts] = useState<PostDTO[] | null>([])
   const [isLoading, setIsLoading] = useState<boolean>(false)
+
   const url: string = 'https://api.learnhub.thanayut.in.th/content'
   useEffect(() => {
     const fetchData = async () => {
@@ -12,7 +13,6 @@ const usePosts = () => {
       try {
         const res = await axios.get<DataDTO>(url)
         setPosts(res.data.data)
-        console.log(res.data.data)
       } catch (error) {
         console.error(error)
       } finally {

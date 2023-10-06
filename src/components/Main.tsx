@@ -1,14 +1,15 @@
+import Pagination from '@mui/material/Pagination'
 import usePosts from '../hooks/usePosts'
 import Post from './Post'
 
 const Main = () => {
-  const { posts, isLoading } = usePosts()
+  const { isLoading, posts } = usePosts()
 
   if (isLoading) return <h1>Loading....</h1>
 
   return (
     <div>
-      <div className="mt-8 flex justify-end">
+      <div className="mt-9 flex justify-end">
         <button className="bg-[#ff741c] hover:bg-black text-black hover:text-[#ff741c] font-bold rounded-lg px-8 py-4 text-lg">
           Create new content
         </button>
@@ -18,6 +19,9 @@ const Main = () => {
           posts.map((post) => {
             return <Post key={post.id} post={post} />
           })}
+      </div>
+      <div className="w-full flex justify-center mt-8">
+        <Pagination />
       </div>
     </div>
   )

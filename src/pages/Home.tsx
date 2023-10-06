@@ -6,7 +6,6 @@ const Home = () => {
     <>
       <div className="w-full flex flex-col items-center">
         <Header />
-        <hr className="border-y-black w-full " />
       </div>
       <Main />
     </>
