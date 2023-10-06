@@ -11,7 +11,7 @@ const Navbar = () => {
         </div>
       </a>
 
-      <div className="flex w-1/6 justify-between items-center">
+      <div className="flex w-48 justify-between items-center">
         <div className="flex items-center ">
           <a className="flex items-center gap-2" href="#">
             <PermIdentityIcon />

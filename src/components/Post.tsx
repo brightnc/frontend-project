@@ -13,12 +13,12 @@ const Post = ({ post }: IPostProps) => {
         <div className="detailGroup">
           <div className="titleGroup">
             <h4 className="font-bold text-lg">{post.videoTitle}</h4>
-            <p>{post.creatorName}</p>
+            <p className="text-base text-[#AAAAAA]">{post.creatorName}</p>
           </div>
-          <h5 className="italic">{post.comment}</h5>
+          <h5 className="italic text-sm text-yellow-200">{post.comment}</h5>
         </div>
         <div className="detailRow">
-          <p>{post.postedBy.name}</p>
+          <p className="text-lg text-[#AAAAAA]">{post.postedBy.name}</p>
         </div>
       </div>
     </div>
