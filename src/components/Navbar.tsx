@@ -29,7 +29,7 @@ const Navbar = () => {
             <div className="flex items-center ">
               <a className="flex items-center gap-2" href="#">
                 <LoginIcon />
-                Login
+                Log in
               </a>
             </div>
           </NavLink>
