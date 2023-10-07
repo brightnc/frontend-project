@@ -24,14 +24,20 @@ const Navbar = () => {
         </>
       ) : (
         //  <--- Login --->
-        <NavLink className={({ isActive }) => (isActive ? 'font-extrabold' : '')} to="/login">
-          <div className="flex items-center ">
-            <a className="flex items-center gap-2" href="#">
-              <LoginIcon />
-              Login
-            </a>
-          </div>
-        </NavLink>
+        <div className="flex">
+          <NavLink className={({ isActive }) => (isActive ? 'font-extrabold' : '')} to="/login">
+            <div className="flex items-center ">
+              <a className="flex items-center gap-2" href="#">
+                <LoginIcon />
+                Login
+              </a>
+            </div>
+          </NavLink>
+          <span className="mx-1">/</span>
+          <NavLink className={({ isActive }) => (isActive ? 'font-extrabold' : '')} to="/register">
+            Sign up
+          </NavLink>
+        </div>
       )}
     </div>
   )

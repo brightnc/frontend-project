@@ -7,7 +7,7 @@ const Post = ({ post }: IPostProps) => {
   return (
     <div className="flex flex-col border border-black rounded-lg">
       <div>
-        <img className="w-full aspect-video object-cover rounded-lg" src={post.thumbnailUrl} alt={post.videoTitle} />
+        <img className="w-full aspect-video object-cover rounded-lg  " src={post.thumbnailUrl} alt={post.videoTitle} />
       </div>
       <div className="p-3 ">
         <div className="detailGroup">

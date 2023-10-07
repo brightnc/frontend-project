@@ -14,7 +14,9 @@ const Register = () => {
           <input className="text-black px-2 py-1  rounded-lg" type="password" />
           <label>Confirm password</label>
           <input className="text-black px-2 py-1  rounded-lg" type="password" />
-          <button className="w-full bg-lime-500 text-black py-3 rounded-lg mt-4 ">Sign up</button>
+          <button className="w-full shadow-lg shadow-orange-500/50 bg-[#ff741c] border border-black hover:bg-black text-black hover:border-[#ff741c] hover:border hover:text-[#ff741c] py-3 rounded-lg mt-4 ">
+            Sign up
+          </button>
         </form>
       </div>
     </div>
