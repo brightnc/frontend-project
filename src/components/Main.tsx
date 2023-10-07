@@ -10,7 +10,7 @@ const Main = () => {
   return (
     <div>
       <div className="mt-9 flex justify-end">
-        <button className="bg-[#ff741c] hover:bg-black text-black hover:text-[#ff741c] font-bold rounded-lg px-8 py-4 text-lg">
+        <button className="bg-[#ff741c] border border-black hover:bg-black text-black hover:border-[#ff741c] hover:border hover:text-[#ff741c] font-bold rounded-lg px-8 py-4 text-lg">
           Create new content
         </button>
       </div>

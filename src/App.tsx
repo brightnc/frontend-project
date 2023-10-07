@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className=" px-16 bg-black text-white font-Kanit">
+      <div className=" px-16  font-Kanit">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
