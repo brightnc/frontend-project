@@ -17,7 +17,7 @@ const Login = () => {
           </button>
         </form>
         <div className="flex w-full gap-7">
-          <span className="font-light text-[#AAAAAA]">Don't have an account?</span>
+          <span className="font-light text-[#AAAAAA]">Don&apos;t have an account?</span>
           <Link to={'/register'} className="underline font-bold text-[#e7dcdc] ">
             Sign up
           </Link>
