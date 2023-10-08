@@ -1,9 +1,9 @@
 import { PostDTO } from '../types/dto'
 
-interface IPostProps {
+interface ICardPostProps {
   post: PostDTO
 }
-const Post = ({ post }: IPostProps) => {
+const CardPost = ({ post }: ICardPostProps) => {
   return (
     <div className="flex flex-col border border-black rounded-lg">
       <div>
@@ -25,4 +25,4 @@ const Post = ({ post }: IPostProps) => {
   )
 }
 
-export default Post
+export default CardPost

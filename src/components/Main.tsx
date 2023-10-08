@@ -1,6 +1,6 @@
 import Pagination from '@mui/material/Pagination'
 import usePosts from '../hooks/usePosts'
-import Post from './Post'
+import CardPost from './CardPost'
 import { Link } from 'react-router-dom'
 
 const Main = () => {
@@ -20,7 +20,7 @@ const Main = () => {
       <div className="grid grid-cols-4 gap-8 mt-11">
         {posts &&
           posts.map((post) => {
-            return <Post key={post.id} post={post} />
+            return <CardPost key={post.id} post={post} />
           })}
       </div>
       <div className="w-full flex justify-center mt-8">
