@@ -9,12 +9,19 @@ const CreatePost = () => {
         <div className="w-full">
           <form className="flex flex-col gap-4 w-full">
             <label htmlFor="video-url">Video URL</label>
-            <input id="video-url" className="text-black px-2 py-1 rounded-lg w-full" type="text" required />
+            <input
+              id="video-url"
+              className="text-black px-2 py-1 rounded-lg w-full"
+              type="text"
+              placeholder="URL"
+              required
+            />
             <label htmlFor="comment">Comment</label>
             <textarea
               id="comment"
               onChange={(e) => setCurrentLength(e.target.value.length)}
               maxLength={maxLength}
+              placeholder="Enter text here"
               className="w-full p-4 h-52 text-lg  text-black shadow-md shadow-white resize-none rounded-md"
             ></textarea>
             <div className="flex justify-end">
