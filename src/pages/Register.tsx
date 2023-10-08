@@ -47,7 +47,7 @@ const Register = () => {
               type="text"
               placeholder="Username"
             />
-            {errors.username && <p className="text-gray-300 font-thin">{errors.username.message}</p>}
+            {errors.username && <p className="text-red-500 font-thin">{errors.username.message}</p>}
           </div>
 
           {/* ----- Password ------ */}
@@ -63,7 +63,7 @@ const Register = () => {
               type="password"
               placeholder="******"
             />
-            {errors.password && <p className="text-gray-300 font-thin">{errors.password.message}</p>}
+            {errors.password && <p className="text-red-500 font-thin">{errors.password.message}</p>}
           </div>
 
           {/* ----- Confirm Password ------ */}
@@ -83,7 +83,7 @@ const Register = () => {
               type="password"
               placeholder="******"
             />
-            {errors.confirmPassword && <p className="text-gray-300 font-thin">{errors.confirmPassword.message}</p>}
+            {errors.confirmPassword && <p className="text-red-500 font-thin">{errors.confirmPassword.message}</p>}
           </div>
           <button
             type="submit"
