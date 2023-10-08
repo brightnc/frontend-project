@@ -1,11 +1,18 @@
 import { useParams } from 'react-router-dom'
 import usePost from '../hooks/usePost'
 import { FaRegEdit } from 'react-icons/fa'
+import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../providers/AuthProvider'
 
 const Post = () => {
   const { id } = useParams()
-  const { post, isLoading, error } = usePost(id || '1')
+  const { post, isLoading, error, deletePost } = usePost(id || '1')
+  const { isLoggedIn, username } = useAuth()
+
+  const handleDelete = () => {
+    deletePost()
+  }
 
   if (isLoading) return <h1>Loading...</h1>
   if (error) return <h1>{error}</h1>
@@ -16,7 +23,7 @@ const Post = () => {
           <div className="grid grid-cols-2 gap-3  border border-black rounded-lg">
             <div className="col-span-1">
               <iframe
-                className="w-full aspect-video object-cover rounded-lg  "
+                className="w-full aspect-video object-cover rounded-lg "
                 src={post.videoUrl}
                 width="100%"
                 height="100%"
@@ -39,13 +46,24 @@ const Post = () => {
                   </p>
                   <p>{post.createdAt}</p>
                   <p>(Updated on {post.updatedAt})</p>
-                  <Link
-                    to={`/posts/${post.id}/edit`}
-                    className="text-lg text-[#ff741c] font-bold flex items-center gap-2"
-                  >
-                    <FaRegEdit />
-                    Edit
-                  </Link>
+                  {isLoggedIn && username === post.postedBy.username && (
+                    <div className="flex gap-6">
+                      <Link
+                        to={`/posts/${post.id}/edit`}
+                        className="text-lg text-[#ff741c] font-bold flex items-center gap-2"
+                      >
+                        <FaRegEdit />
+                        Edit
+                      </Link>
+                      <button
+                        onClick={handleDelete}
+                        className="text-lg text-[#ff741c] font-bold flex items-center gap-1"
+                      >
+                        <DeleteForeverOutlinedIcon />
+                        Delete
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

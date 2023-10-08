@@ -1,9 +1,18 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined'
 import logo from '../assets/logo.svg'
 import LoginIcon from '@mui/icons-material/Login'
+import { useAuth } from '../providers/AuthProvider'
 
 const Navbar = () => {
-  const isLoggedIn: boolean = false
+  const { isLoggedIn, logout, username } = useAuth()
+
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    logout()
+    navigate('/')
+  }
   return (
     <div className="flex items-center justify-between w-full fixed top-0 h-auto py-7 px-16 bg-black text-white z-50  ">
       <NavLink to={'/'}>
@@ -14,14 +23,20 @@ const Navbar = () => {
       </NavLink>
       {isLoggedIn ? (
         //  <--- Logout --->
-        <>
+        <div className="flex gap-10">
           <div className="flex items-center ">
-            <a className="flex items-center gap-2" href="#">
+            <p className="flex items-center gap-2">
+              <AccountCircleOutlinedIcon />
+              {username}
+            </p>
+          </div>
+          <div className="flex items-center ">
+            <button onClick={handleLogout} className="flex items-center gap-2">
               <LoginIcon />
               Logout
-            </a>
+            </button>
           </div>
-        </>
+        </div>
       ) : (
         //  <--- Login --->
         <div className="flex">

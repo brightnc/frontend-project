@@ -1,15 +1,27 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { FormEvent, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../providers/AuthProvider'
 
 const Login = () => {
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
-  console.log(username, password)
+  const { login } = useAuth()
+  const navigate = useNavigate()
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault()
+    try {
+      await login(username, password)
+      navigate('/')
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   return (
     <div className=" h-screen flex flex-col justify-center items-center w-full">
       <div className="w-auto h-auto gap-6 flex flex-col">
-        <form action="" className=" flex flex-col gap-5">
+        <form onSubmit={handleSubmit} className=" flex flex-col gap-5">
           <div className="flex justify-center text-3xl mb-3">
             <h1 className="text-[#ff741c]">Sign in</h1>
           </div>

@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 import { PostDTO } from '../types/dto'
 import axios from 'axios'
+import { useNavigate } from 'react-router'
 
 const usePost = (id: string) => {
   const [post, setPost] = useState<PostDTO | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
   const url: string = 'https://api.learnhub.thanayut.in.th/content/'
+
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true)
@@ -36,7 +38,19 @@ const usePost = (id: string) => {
 
     return match && match[2].length === 11 ? match[2] : null
   }
-  return { post, isLoading, error }
+  const token = localStorage.getItem('token')
+  const navigate = useNavigate()
+  const deletePost = async () => {
+    try {
+      await axios.delete(url + id, {
+        headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
+      })
+      navigate('/')
+    } catch (error) {
+      setError('Cannot delete post id : ' + id)
+    }
+  }
+  return { post, isLoading, error, deletePost }
 }
 
 export default usePost
