@@ -27,10 +27,10 @@ const Navbar = () => {
         <div className="flex">
           <NavLink className={({ isActive }) => (isActive ? 'font-extrabold' : '')} to="/login">
             <div className="flex items-center ">
-              <a className="flex items-center gap-2" href="#">
+              <p className="flex items-center gap-2">
                 <LoginIcon />
                 Log in
-              </a>
+              </p>
             </div>
           </NavLink>
           <span className="mx-1">/</span>
