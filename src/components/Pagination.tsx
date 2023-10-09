@@ -12,7 +12,11 @@ const PaginationComp = ({ postPerPage, totalPosts, setCurrentPage }: IPagination
     <div className="flex mb-5 gap-7">
       {pages.map((page) => {
         return (
-          <button className="w-8 border border-white rounded-full" key={page} onClick={() => setCurrentPage(page)}>
+          <button
+            className="w-8 border border-white rounded-full active:bg-[#ff741c]"
+            key={page}
+            onClick={() => setCurrentPage(page)}
+          >
             {page}
           </button>
         )

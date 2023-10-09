@@ -21,7 +21,6 @@ const AuthProvider = ({ children }: IAuthProviderProps) => {
 
   const login = async (username: string, password: string) => {
     const loginBody: LoginDTO = { username, password }
-    console.log(username, password)
 
     const url = 'https://api.learnhub.thanayut.in.th/auth/login'
     try {

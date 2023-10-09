@@ -28,6 +28,12 @@ export interface LoginDTO {
   password: string
 }
 
+export interface RegisterDTO {
+  username: string
+  password: string
+  name: string
+}
+
 export interface CredentialDTO {
   accessToken: string
 }

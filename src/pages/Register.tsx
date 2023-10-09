@@ -1,4 +1,5 @@
 import { useForm, SubmitHandler } from 'react-hook-form'
+import useRegister from '../hooks/useRegister'
 interface IFormRegisterInput {
   name: string
   username: string
@@ -7,13 +8,24 @@ interface IFormRegisterInput {
 }
 
 const Register = () => {
+  const { registerUser } = useRegister()
   const {
     register,
     handleSubmit,
     formState: { errors },
     watch,
   } = useForm<IFormRegisterInput>()
-  const onSubmit: SubmitHandler<IFormRegisterInput> = (data) => console.log(data)
+  const onSubmit: SubmitHandler<IFormRegisterInput> = async (data) => {
+    try {
+      await registerUser({
+        name: data.name,
+        password: data.password,
+        username: data.username,
+      })
+    } catch (error) {
+      console.error(error)
+    }
+  }
   const password: string = watch('password')
 
   return (
