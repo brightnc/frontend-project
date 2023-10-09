@@ -1,10 +1,19 @@
-import Pagination from '@mui/material/Pagination'
 import usePosts from '../hooks/usePosts'
 import CardPost from './CardPost'
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import PaginationComp from './Pagination'
 
 const Main = () => {
   const { isLoading, posts } = usePosts()
+  if (posts === null) {
+    throw new TypeError('The value was promised to always be there!')
+  }
+  const [currentPage, setCurrentPage] = useState<number>(1)
+  const postsPerPage: number = 12
+  const lastPostIndex = currentPage * postsPerPage
+  const firstPostIndex = lastPostIndex - postsPerPage
+  const currentPosts = posts.slice(firstPostIndex, lastPostIndex)
 
   if (isLoading) return <h1>Loading....</h1>
 
@@ -19,12 +28,12 @@ const Main = () => {
       </div>
       <div className="grid grid-cols-3 gap-8 mt-11">
         {posts &&
-          posts.map((post) => {
+          currentPosts.map((post) => {
             return <CardPost key={post.id} post={post} />
           })}
       </div>
-      <div className="w-full flex justify-center mt-8">
-        <Pagination />
+      <div className="w-full flex justify-center mt-8 ">
+        <PaginationComp postPerPage={postsPerPage} totalPosts={posts.length} setCurrentPage={setCurrentPage} />
       </div>
     </div>
   )
