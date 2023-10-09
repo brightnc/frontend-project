@@ -17,7 +17,7 @@ const Main = () => {
           </button>
         </Link>
       </div>
-      <div className="grid grid-cols-4 gap-8 mt-11">
+      <div className="grid grid-cols-3 gap-8 mt-11">
         {posts &&
           posts.map((post) => {
             return <CardPost key={post.id} post={post} />

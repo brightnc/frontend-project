@@ -4,6 +4,10 @@ import { FaRegEdit } from 'react-icons/fa'
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../providers/AuthProvider'
+import Rating from '@mui/material/Rating'
+import { styled } from '@mui/material/styles'
+import StarOutlineOutlinedIcon from '@mui/icons-material/StarOutlineOutlined'
+import StarOutlinedIcon from '@mui/icons-material/StarOutlined'
 
 const Post = () => {
   const { id } = useParams()
@@ -13,6 +17,15 @@ const Post = () => {
   const handleDelete = () => {
     deletePost()
   }
+
+  const StyledRating = styled(Rating)({
+    '& .MuiRating-iconFilled': {
+      color: 'yellow',
+    },
+    '& .MuiRating-iconHover': {
+      color: 'yellow',
+    },
+  })
 
   if (isLoading) return <h1>Loading...</h1>
   if (error) return <h1>{error}</h1>
@@ -44,6 +57,14 @@ const Post = () => {
                     Posted by<span className="mx-1 text-xl">—</span>
                     {post.postedBy.name}
                   </p>
+                  <StyledRating
+                    name="customized-color"
+                    size="small"
+                    readOnly
+                    value={post.rating}
+                    icon={<StarOutlinedIcon fontSize="inherit" />}
+                    emptyIcon={<StarOutlineOutlinedIcon color="warning" fontSize="inherit" />}
+                  />
                   <p>{post.createdAt}</p>
                   <p>(Updated on {post.updatedAt})</p>
                   {isLoggedIn && username === post.postedBy.username && (

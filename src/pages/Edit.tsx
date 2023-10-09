@@ -1,6 +1,10 @@
 import { FormEvent, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import usePost from '../hooks/usePost'
+import Rating from '@mui/material/Rating'
+import { styled } from '@mui/material/styles'
+import StarOutlineOutlinedIcon from '@mui/icons-material/StarOutlineOutlined'
+import StarOutlinedIcon from '@mui/icons-material/StarOutlined'
 
 const Edit = () => {
   const [currentLength, setCurrentLength] = useState<number>(0)
@@ -8,6 +12,7 @@ const Edit = () => {
   const { id } = useParams()
   const { post, isLoading, error } = usePost(id || '1')
   const [comment, setComment] = useState('')
+  const [rating, setRating] = useState<number | null>(null)
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
@@ -15,6 +20,15 @@ const Edit = () => {
     setComment('')
     setCurrentLength(0)
   }
+
+  const StyledRating = styled(Rating)({
+    '& .MuiRating-iconFilled': {
+      color: 'yellow',
+    },
+    '& .MuiRating-iconHover': {
+      color: 'yellow',
+    },
+  })
 
   if (isLoading) return <h1>Loading...</h1>
   if (error) return <h1>{error}</h1>
@@ -42,6 +56,19 @@ const Edit = () => {
                   <span>{currentLength}</span>
                   <span>/</span>
                   <span>{maxLength}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <p className="text-lg">Rating :</p>
+                  <StyledRating
+                    name="customized-color"
+                    size="large"
+                    value={rating}
+                    onChange={(_, newValue) => {
+                      setRating(newValue)
+                    }}
+                    icon={<StarOutlinedIcon fontSize="inherit" />}
+                    emptyIcon={<StarOutlineOutlinedIcon color="warning" fontSize="inherit" />}
+                  />
                 </div>
                 <button
                   type="submit"

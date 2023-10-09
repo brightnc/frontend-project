@@ -31,3 +31,9 @@ export interface LoginDTO {
 export interface CredentialDTO {
   accessToken: string
 }
+
+export interface CreateContentDTO {
+  videoUrl: string
+  comment: string
+  rating: number
+}

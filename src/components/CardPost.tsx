@@ -1,12 +1,24 @@
 import { Link } from 'react-router-dom'
 import { PostDTO } from '../types/dto'
+import Rating from '@mui/material/Rating'
+import { styled } from '@mui/material/styles'
+import StarOutlineOutlinedIcon from '@mui/icons-material/StarOutlineOutlined'
+import StarOutlinedIcon from '@mui/icons-material/StarOutlined'
 
 interface ICardPostProps {
   post: PostDTO
 }
 const CardPost = ({ post }: ICardPostProps) => {
+  const StyledRating = styled(Rating)({
+    '& .MuiRating-iconFilled': {
+      color: 'yellow',
+    },
+    '& .MuiRating-iconHover': {
+      color: 'yellow',
+    },
+  })
   return (
-    <div className="flex flex-col border border-black rounded-lg">
+    <div className="flex flex-col border border-black rounded-lg gap-6">
       <Link to={`/posts/${post.id}`}>
         <div>
           <img
@@ -23,8 +35,16 @@ const CardPost = ({ post }: ICardPostProps) => {
             </div>
             <h5 className="italic text-sm text-yellow-200">{post.comment}</h5>
           </div>
-          <div className="detailRow">
+          <div className="flex justify-between items-center">
             <p className="text-lg text-[#AAAAAA]">{post.postedBy.name}</p>
+            <StyledRating
+              name="customized-color"
+              size="small"
+              readOnly
+              value={post.rating}
+              icon={<StarOutlinedIcon fontSize="inherit" />}
+              emptyIcon={<StarOutlineOutlinedIcon color="warning" fontSize="inherit" />}
+            />
           </div>
         </div>
       </Link>

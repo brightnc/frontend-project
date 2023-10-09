@@ -50,6 +50,7 @@ const usePost = (id: string) => {
       setError('Cannot delete post id : ' + id)
     }
   }
+
   return { post, isLoading, error, deletePost }
 }
 
