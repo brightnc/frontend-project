@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { PostDTO } from '../types/dto'
+import { PostDTO, UpdateContentDTO } from '../types/dto'
 import axios from 'axios'
 import { useNavigate } from 'react-router'
 
@@ -8,6 +8,8 @@ const usePost = (id: string) => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
   const url: string = 'https://api.learnhub.thanayut.in.th/content/'
+  const [postRating, setPostRating] = useState<number>(0)
+  const [comment, setComment] = useState('')
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,6 +20,8 @@ const usePost = (id: string) => {
         const newUpdate = toDate(res.data.updatedAt)
         const youtubeEmbedLink = '//www.youtube.com/embed/' + getYoutubeId(res.data.videoUrl)
         setPost({ ...res.data, createdAt: newDate, updatedAt: newUpdate, videoUrl: youtubeEmbedLink })
+        setPostRating(res.data.rating)
+        setComment(res.data.comment)
       } catch (error) {
         setError('Cannot get post id : ' + id)
       } finally {
@@ -40,6 +44,7 @@ const usePost = (id: string) => {
   }
   const token = localStorage.getItem('token')
   const navigate = useNavigate()
+
   const deletePost = async () => {
     try {
       await axios.delete(url + id, {
@@ -51,7 +56,19 @@ const usePost = (id: string) => {
     }
   }
 
-  return { post, isLoading, error, deletePost }
+  const updatePost = async (content: UpdateContentDTO) => {
+    const token = localStorage.getItem('token')
+    try {
+      await axios.patch<PostDTO>(url + id, content, {
+        headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
+      })
+      navigate('/')
+    } catch (error) {
+      throw new Error('Can not update content !')
+    }
+  }
+
+  return { post, isLoading, error, deletePost, postRating, setPostRating, updatePost, setComment, comment }
 }
 
 export default usePost

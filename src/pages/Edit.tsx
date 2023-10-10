@@ -10,13 +10,19 @@ const Edit = () => {
   const [currentLength, setCurrentLength] = useState<number>(0)
   const maxLength = 250
   const { id } = useParams()
-  const { post, isLoading, error } = usePost(id || '1')
-  const [comment, setComment] = useState('')
-  const [rating, setRating] = useState<number | null>(null)
+  const { post, isLoading, error, postRating, setPostRating, updatePost, setComment, comment } = usePost(id || '1')
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    console.log(comment)
+    try {
+      await updatePost({
+        comment: comment,
+        rating: postRating,
+      })
+    } catch (error) {
+      console.error(error)
+    }
+
     setComment('')
     setCurrentLength(0)
   }
@@ -62,9 +68,10 @@ const Edit = () => {
                   <StyledRating
                     name="customized-color"
                     size="large"
-                    value={rating}
+                    value={postRating}
                     onChange={(_, newValue) => {
-                      setRating(newValue)
+                      if (newValue === null) newValue = 0
+                      setPostRating(newValue)
                     }}
                     icon={<StarOutlinedIcon fontSize="inherit" />}
                     emptyIcon={<StarOutlineOutlinedIcon color="warning" fontSize="inherit" />}
