@@ -5,7 +5,7 @@ import { useAuth } from '../providers/AuthProvider'
 const Login = () => {
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
-  const { login } = useAuth()
+  const { login, errMsg } = useAuth()
   const navigate = useNavigate()
 
   const handleSubmit = async (e: FormEvent) => {
@@ -43,6 +43,7 @@ const Login = () => {
             placeholder="**********"
             onChange={(e) => setPassword(e.target.value)}
           />
+          {errMsg && <p>{errMsg}</p>}
           <button
             type="submit"
             className="w-full shadow-lg shadow-orange-500/50 bg-[#ff741c] border border-black hover:bg-black text-black hover:border-[#ff741c] hover:border hover:text-[#ff741c]  py-3 rounded-lg mt-4 "

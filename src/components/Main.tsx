@@ -26,6 +26,7 @@ const Main = () => {
           </button>
         </Link>
       </div>
+
       <div className="grid grid-cols-3 gap-8 mt-11">
         {posts &&
           currentPosts.map((post) => {
