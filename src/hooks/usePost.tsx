@@ -18,8 +18,7 @@ const usePost = (id: string) => {
         const res = await axios.get<PostDTO>(url + id)
         const newDate = toDate(res.data.createdAt)
         const newUpdate = toDate(res.data.updatedAt)
-        const youtubeEmbedLink = '//www.youtube.com/embed/' + getYoutubeId(res.data.videoUrl)
-        setPost({ ...res.data, createdAt: newDate, updatedAt: newUpdate, videoUrl: youtubeEmbedLink })
+        setPost({ ...res.data, createdAt: newDate, updatedAt: newUpdate })
         setPostRating(res.data.rating)
         setComment(res.data.comment)
       } catch (error) {
@@ -34,13 +33,6 @@ const usePost = (id: string) => {
   const toDate = (d: string) => {
     const date = new Date(d)
     return date.toDateString()
-  }
-
-  function getYoutubeId(url: string) {
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/
-    const match = url.match(regExp)
-
-    return match && match[2].length === 11 ? match[2] : null
   }
   const token = localStorage.getItem('token')
   const navigate = useNavigate()

@@ -8,6 +8,7 @@ import Rating from '@mui/material/Rating'
 import { styled } from '@mui/material/styles'
 import StarOutlineOutlinedIcon from '@mui/icons-material/StarOutlineOutlined'
 import StarOutlinedIcon from '@mui/icons-material/StarOutlined'
+import ReactPlayer from 'react-player/youtube'
 
 const Post = () => {
   const { id } = useParams()
@@ -35,11 +36,12 @@ const Post = () => {
         <div className="w-full h-4/5 flex justify-center items-center ">
           <div className="grid grid-cols-2 gap-3  border border-black rounded-lg">
             <div className="col-span-1">
-              <iframe
+              <ReactPlayer
                 className="w-full aspect-video object-cover rounded-lg "
-                src={post.videoUrl}
+                url={post.videoUrl}
                 width="100%"
                 height="100%"
+                controls={true}
               />
             </div>
             <div className="p-3 flex flex-col gap-20">
