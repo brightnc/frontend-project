@@ -39,6 +39,7 @@ const CardPost = ({ post }: ICardPostProps) => {
             <p className="text-lg text-[#AAAAAA]">{post.postedBy.name}</p>
             <StyledRating
               name="customized-color"
+              className="-scale-x-100"
               size="small"
               readOnly
               value={post.rating}

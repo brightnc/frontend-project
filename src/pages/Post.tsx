@@ -58,6 +58,7 @@ const Post = () => {
                     {post.postedBy.name}
                   </p>
                   <StyledRating
+                    className="-scale-x-100"
                     name="customized-color"
                     size="small"
                     readOnly
