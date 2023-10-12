@@ -5,6 +5,7 @@ import Rating from '@mui/material/Rating'
 import { styled } from '@mui/material/styles'
 import StarOutlineOutlinedIcon from '@mui/icons-material/StarOutlineOutlined'
 import StarOutlinedIcon from '@mui/icons-material/StarOutlined'
+import { toast } from 'react-toastify'
 
 const Edit = () => {
   const [currentLength, setCurrentLength] = useState<number>(0)
@@ -18,6 +19,16 @@ const Edit = () => {
       await updatePost({
         comment: comment,
         rating: postRating,
+      })
+      toast.success('Success', {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
       })
     } catch (error) {
       console.error(error)

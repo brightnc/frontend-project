@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles'
 import StarOutlineOutlinedIcon from '@mui/icons-material/StarOutlineOutlined'
 import StarOutlinedIcon from '@mui/icons-material/StarOutlined'
 import useCreatePost from '../hooks/useCreatePost'
+import { toast } from 'react-toastify'
 
 const CreatePost = () => {
   const [currentLength, setCurrentLength] = useState<number>(0)
@@ -11,11 +12,6 @@ const CreatePost = () => {
   const [videoUrl, setVideoUrl] = useState<string>('')
   const [comment, setComment] = useState<string>('')
   const { createPost } = useCreatePost()
-  // const [contentBody, setContentBody] = useState<CreateContentDTO>({
-  //   videoUrl: '',
-  //   comment: '',
-  //   rating: 0,
-  // })
   const maxLength = 250
 
   const StyledRating = styled(Rating)({
@@ -34,6 +30,16 @@ const CreatePost = () => {
         videoUrl: videoUrl,
         comment: comment,
         rating: rating || 0,
+      })
+      toast.success('Success', {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
       })
     } catch (error) {
       console.error(error)

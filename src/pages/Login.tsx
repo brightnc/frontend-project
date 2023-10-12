@@ -12,6 +12,7 @@ const Login = () => {
     e.preventDefault()
     try {
       await login(username, password)
+
       navigate('/')
     } catch (error) {
       console.error(error)
