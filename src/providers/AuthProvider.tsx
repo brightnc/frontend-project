@@ -25,7 +25,7 @@ const AuthProvider = ({ children }: IAuthProviderProps) => {
   const login = async (username: string, password: string) => {
     const loginBody: LoginDTO = { username, password }
 
-    const url = 'https://api.learnhub.thanayut.in.th/auth/login'
+    const url = 'http://localhost:8080/auth/login'
     try {
       const res = await axios.post<CredentialDTO>(url, loginBody, { headers: { 'Content-Type': 'application/json' } })
       localStorage.setItem('token', res.data.accessToken)
@@ -37,10 +37,26 @@ const AuthProvider = ({ children }: IAuthProviderProps) => {
       throw new Error('Invalid username or password !')
     }
   }
-  const logout = () => {
-    localStorage.clear()
-    setIsLoggedIn(false)
-    setUsername(null)
+  const logout = async () => {
+    const url = 'http://localhost:8080/auth/logout'
+    try {
+      const token = localStorage.getItem('token')
+
+      await axios.post(
+        url,
+        {},
+        {
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        },
+      )
+
+      setIsLoggedIn(false)
+      localStorage.clear()
+      setUsername(null)
+    } catch (error) {
+      console.error(error)
+      throw new Error('Invalid token')
+    }
   }
   return <AuthContext.Provider value={{ isLoggedIn, login, logout, username, errMsg }}>{children}</AuthContext.Provider>
 }

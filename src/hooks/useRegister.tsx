@@ -5,7 +5,7 @@ import axios from 'axios'
 const useRegister = () => {
   const navigate = useNavigate()
   const registerUser = async (body: RegisterDTO) => {
-    const url = 'https://api.learnhub.thanayut.in.th/user'
+    const url = 'http://localhost:8080/user'
     try {
       await axios.post(url, body, {
         headers: { 'Content-Type': 'application/json' },

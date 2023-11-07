@@ -6,7 +6,7 @@ const usePosts = () => {
   const [posts, setPosts] = useState<PostDTO[] | null>([])
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
-  const url: string = 'https://api.learnhub.thanayut.in.th/content'
+  const url: string = 'http://localhost:8080/content'
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true)
