@@ -1,7 +1,7 @@
 // DTO
-export interface DataDTO {
-  data: PostDTO[]
-}
+// export interface DataDTO {
+//   data: PostDTO[]
+// }
 export interface PostDTO {
   id: number
   videoTitle: string
@@ -35,7 +35,7 @@ export interface RegisterDTO {
 }
 
 export interface CredentialDTO {
-  accessToken: string
+  token: string
 }
 
 export interface CreateContentDTO {

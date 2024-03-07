@@ -7,7 +7,7 @@ const usePost = (id: string) => {
   const [post, setPost] = useState<PostDTO | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
-  const url: string = 'http://localhost:8080/content/'
+  const url: string = 'http://localhost:8000/api/v1/content/'
   const [postRating, setPostRating] = useState<number>(0)
   const [comment, setComment] = useState('')
 

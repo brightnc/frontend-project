@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 const useCreatePost = () => {
   const navigate = useNavigate()
   const createPost = async (content: CreateContentDTO) => {
-    const url = 'http://localhost:8080/content'
+    const url = 'http://localhost:8000/api/v1/content'
     const token = localStorage.getItem('token')
     try {
       await axios.post<PostDTO>(url, content, {

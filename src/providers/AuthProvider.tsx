@@ -25,10 +25,10 @@ const AuthProvider = ({ children }: IAuthProviderProps) => {
   const login = async (username: string, password: string) => {
     const loginBody: LoginDTO = { username, password }
 
-    const url = 'http://localhost:8080/auth/login'
+    const url = 'http://localhost:8000/api/v1/login'
     try {
       const res = await axios.post<CredentialDTO>(url, loginBody, { headers: { 'Content-Type': 'application/json' } })
-      localStorage.setItem('token', res.data.accessToken)
+      localStorage.setItem('token', res.data.token)
       localStorage.setItem('username', username)
       setIsLoggedIn(true)
       setUsername(username)
@@ -38,7 +38,7 @@ const AuthProvider = ({ children }: IAuthProviderProps) => {
     }
   }
   const logout = async () => {
-    const url = 'http://localhost:8080/auth/logout'
+    const url = 'http://localhost:8000/api/v1/logout'
     try {
       const token = localStorage.getItem('token')
 
